@@ -1,21 +1,15 @@
 from app.models.schemas import RoleSpec, CandidateBrief
-from app.agents.jd_parser import JDParserAgent
-from app.agents.scout import ScoutAgent
-from app.agents.filter import FilterAgent
-from app.agents.deep_profile import DeepProfileAgent
-from app.agents.fit_scorer import FitScorerAgent
-from app.agents.report_generator import ReportGeneratorAgent
-import asyncio
+from app.factories.agent_factory import AgentFactory
 from typing import List
 
 class PipelineOrchestrator:
     def __init__(self):
-        self.jd_parser = JDParserAgent()
-        self.scout = ScoutAgent()
-        self.filter_agent = FilterAgent()
-        self.deep_profile = DeepProfileAgent()
-        self.fit_scorer = FitScorerAgent()
-        self.report_generator = ReportGeneratorAgent()
+        self.jd_parser = AgentFactory.create_jd_parser()
+        self.scout = AgentFactory.create_scout()
+        self.filter_agent = AgentFactory.create_filter()
+        self.deep_profile = AgentFactory.create_deep_profile()
+        self.fit_scorer = AgentFactory.create_fit_scorer()
+        self.report_generator = AgentFactory.create_report_generator()
 
     async def run(self, raw_jd: str) -> List[CandidateBrief]:
         print("1. Parsing JD...")

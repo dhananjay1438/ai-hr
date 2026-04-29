@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # Google Vertex AI
     google_cloud_project: str = ""
     google_cloud_region: str = "us-central1"
-    vertexai_model: str = "gemini-1.5-pro"
+    vertexai_model: str = "gemini-3.1-flash-lite"
 
     # Optional credentials JSON
     google_application_credentials: str | None = None
